@@ -11,7 +11,17 @@ namespace BankSystem
         // Fields.
         private readonly string AccountHolder;
         private double Balance;
-        private List<double> Transactions = new List<double>();
+        private readonly List<double> Transactions = new List<double>();
+        private static readonly Random random = new Random();
+        private static readonly object syncLock = new object();
+        public static int RandomNumber(int min, int max)
+        {
+            lock (syncLock)
+            { // synchronize
+                return random.Next(min, max);
+            }
+        }
+        public int AccountId = RandomNumber(1, 10000);
 
         // Constructor.
         public BankAccount(string accountHolder, double balance = 0)
@@ -21,8 +31,7 @@ namespace BankSystem
         }
         public double GetBalance() => Balance;
         public List<double> GetTransactions() => Transactions;
-
-
+        
         public void AddTransaction(double transaction) => Transactions.Add(transaction);
         public void BalanceChange(double amount)
         {
@@ -34,7 +43,7 @@ namespace BankSystem
             {
                 Withdraw(-amount);
             }
-            //amount > 0 ? Deposit(amount) : Withdraw(amount);
+            //amount > 0 ? Deposit(amount) : Withdraw(-amount);
         }
         
         // Methods.

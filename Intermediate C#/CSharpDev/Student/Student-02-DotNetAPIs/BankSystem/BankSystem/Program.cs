@@ -11,6 +11,15 @@ namespace BankSystem
         static void Main()
         {
             BankAccount acc1 = new BankAccount("Brendan");
+            BankAccount acc2 = new BankAccount("Peter");
+            BankAccount acc3 = new BankAccount("Jacintha");
+
+            Bank bigBank = new Bank
+            {
+                { acc1.AccountId, acc1 },
+                { acc2.AccountId, acc2 },
+                { acc3.AccountId, acc3 }
+            };
 
             // Do some stuff.
             acc1.AddTransaction(10000);
@@ -30,6 +39,9 @@ namespace BankSystem
                     Console.WriteLine($"Transaction amount: {ex.TransactionAmount}");
                 }
             }
+
+            bigBank.Remove(acc1.AccountId);
+            bigBank.ContainsKey(acc1.AccountId);
         }
     }
 }
