@@ -14,7 +14,6 @@ namespace BankSystem
         public event BankingAccountEventHandler ProtectionLimitExceeded;
         private string AccountHolder;
         private double Balance;
-        internal double GetBalance() => Balance;
 
         // Constructor.
         public BankAccount(string accountHolder, double balance = 0)
@@ -22,6 +21,7 @@ namespace BankSystem
             AccountHolder = accountHolder;
             Balance = balance;
         }
+        public double GetBalance() => Balance;
 
         // Methods.
         public void Deposit(double amount)
