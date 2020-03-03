@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2011
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiLoGame3Library", "HiLoGame3Library\HiLoGame3Library.csproj", "{BAC40A07-1FB5-4601-85FA-A495654F397E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiLoGame3Tests", "HiLoGame3Tests\HiLoGame3Tests.csproj", "{6690AA60-4B27-4CDD-9018-8010D9D45183}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BAC40A07-1FB5-4601-85FA-A495654F397E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAC40A07-1FB5-4601-85FA-A495654F397E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAC40A07-1FB5-4601-85FA-A495654F397E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAC40A07-1FB5-4601-85FA-A495654F397E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6690AA60-4B27-4CDD-9018-8010D9D45183}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6690AA60-4B27-4CDD-9018-8010D9D45183}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6690AA60-4B27-4CDD-9018-8010D9D45183}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6690AA60-4B27-4CDD-9018-8010D9D45183}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6B08AD03-42B9-4858-97AE-4CA254474BBB}
+	EndGlobalSection
+EndGlobal

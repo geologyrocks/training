@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    
+    <!-- The following line enables support for nullable reference types for the whole project -->
+    <!-- <Nullable>enable</Nullable> -->
+    
+  </PropertyGroup>
+
+</Project>
