@@ -43,8 +43,8 @@ namespace BankSystem
             Console.WriteLine($"Trying to deposit {amount}.");
             if (amount >= 100000 )
             {
-                throw new BankException("You cannot deposit this amount online. Please visit a representative in-branch; they will be happy to assist you.");
-}
+                throw new BankException("You cannot deposit this amount online. Please visit a representative in-branch; they will be happy to assist you.", AccountHolder, amount);
+            }
             else
             {
                 Balance += amount;
@@ -57,11 +57,10 @@ namespace BankSystem
             Console.WriteLine($"Trying to withdraw {amount}.");
             if (Balance < 0 || Balance - amount < 0)
             {
-                throw new BankException("Insufficient funds in the account");
+                throw new BankException($"Insufficient funds in the account to withdraw that amount. \nAccount balance is {GetBalance()}", AccountHolder, amount);
             }
             else
             {
-            
                 Balance -= amount;
                 Console.WriteLine($"{amount} withdrawn from account. Account balance is {GetBalance()}.");
             }

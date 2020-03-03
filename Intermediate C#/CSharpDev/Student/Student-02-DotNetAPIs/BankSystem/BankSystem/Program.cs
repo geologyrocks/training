@@ -8,7 +8,7 @@ namespace BankSystem
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             BankAccount acc1 = new BankAccount("Brendan");
 
@@ -25,7 +25,9 @@ namespace BankSystem
                 }
                 catch (BankException ex)
                 {
-                    Console.WriteLine($"Custom exception at {ex.Timestamp}, message: {ex.Message}.");
+                    Console.WriteLine($"Custom exception at: {ex.Timestamp}, message: {ex.Message}.");
+                    Console.WriteLine($"Account holder: {ex.AccountHolder}");
+                    Console.WriteLine($"Transaction amount: {ex.TransactionAmount}");
                 }
             }
         }
