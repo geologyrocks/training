@@ -12,38 +12,39 @@ namespace BankSystem
         // Fields.
         public event BankingAccountEventHandler Overdrawn;
         public event BankingAccountEventHandler ProtectionLimitExceeded;
-        private string accountHolder;
-        private double balance;
+        private string AccountHolder;
+        private double Balance;
+        internal double GetBalance() => Balance;
 
         // Constructor.
-        public BankAccount(string accountHolder)
+        public BankAccount(string accountHolder, double balance = 0)
         {
-            this.accountHolder = accountHolder;
-            this.balance = 0;
+            AccountHolder = accountHolder;
+            Balance = balance;
         }
 
         // Methods.
         public void Deposit(double amount)
         {
-            balance += amount;
-            if (balance > 50000)
+            Balance += amount;
+            if (Balance > 50000)
             {
-                ProtectionLimitExceeded?.Invoke(this, new BankAccountEventArgs(balance));
+                ProtectionLimitExceeded?.Invoke(this, new BankAccountEventArgs(amount));
             }
         }
 
         public void Withdraw(double amount)
         {
-            balance -= amount;
-            if (balance < 0)
+            Balance -= amount;
+            if (Balance < 0)
             {
-                Overdrawn?.Invoke(this, new BankAccountEventArgs(balance));
+                Overdrawn?.Invoke(this, new BankAccountEventArgs(amount));
             }
         }
 
         public override string ToString()
         {
-            return $"Account {accountHolder}, balance {balance:C}";
+            return $"Account {AccountHolder}, balance {Balance:C}";
         }
     }
 }
