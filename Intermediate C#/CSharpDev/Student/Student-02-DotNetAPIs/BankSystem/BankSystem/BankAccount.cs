@@ -6,52 +6,67 @@ using System.Threading.Tasks;
 
 namespace BankSystem
 {
-    public class BankAccountEventArgs : EventArgs
-    {
-        private double transactionAmount;
-        private DateTime timestamp = DateTime.Now;
-
-        public BankAccountEventArgs(double transactionAmount) => this.transactionAmount = transactionAmount;
-
-        public override string ToString() => $"Transaction amount {transactionAmount}, timestamp {timestamp}";
-    }
-
     public class BankAccount
     {
         // Fields.
-        private string accountHolder;
-        private double balance = 0;
-
-        // Events.
-        public event EventHandler<BankAccountEventArgs> ProtectionLimitExceeded;
-        public event EventHandler<BankAccountEventArgs> Overdrawn;
+        private readonly string AccountHolder;
+        private double Balance;
+        private List<double> Transactions = new List<double>();
 
         // Constructor.
-        public BankAccount(string accountHolder) => this.accountHolder = accountHolder;
+        public BankAccount(string accountHolder, double balance = 0)
+        {
+            AccountHolder = accountHolder;
+            Balance = balance;
+        }
+        public double GetBalance() => Balance;
+        public List<double> GetTransactions() => Transactions;
 
+
+        public void AddTransaction(double transaction) => Transactions.Add(transaction);
+        public void BalanceChange(double amount)
+        {
+            if (amount > 0)
+            {
+                Deposit(amount);
+            }
+            else
+            {
+                Withdraw(-amount);
+            }
+            //amount > 0 ? Deposit(amount) : Withdraw(amount);
+        }
+        
         // Methods.
-        public void Deposit(double amount)
+        private void Deposit(double amount)
         {
-            balance += amount;
-
-            // If balance has exceeded the government's protection limit, raise a ProtectionLimitExceeded event.
-            if (balance >= 50000 && ProtectionLimitExceeded != null)
+            Console.WriteLine($"Trying to deposit {amount}.");
+            if (amount >= 100000 )
             {
-                ProtectionLimitExceeded(this, new BankAccountEventArgs(amount));
+                throw new BankException("You cannot deposit this amount online. Please visit a representative in-branch; they will be happy to assist you.");
+}
+            else
+            {
+                Balance += amount;
+                Console.WriteLine($"{amount} deposited in account. Account balance is {GetBalance()}.");
             }
         }
 
-        public void Withdraw(double amount)
+        private void Withdraw(double amount)
         {
-            balance -= amount;
-
-            // If account is now negative, raise an Overdrawn event.
-            if (balance < 0 && Overdrawn != null)
+            Console.WriteLine($"Trying to withdraw {amount}.");
+            if (Balance < 0 || Balance - amount < 0)
             {
-                Overdrawn(this, new BankAccountEventArgs(amount));
+                throw new BankException("Insufficient funds in the account");
+            }
+            else
+            {
+            
+                Balance -= amount;
+                Console.WriteLine($"{amount} withdrawn from account. Account balance is {GetBalance()}.");
             }
         }
 
-        public override string ToString() => $"Account {accountHolder}, balance {balance:C}";
+        public override string ToString() => $"Account {AccountHolder}, balance {Balance:C}";
     }
 }
