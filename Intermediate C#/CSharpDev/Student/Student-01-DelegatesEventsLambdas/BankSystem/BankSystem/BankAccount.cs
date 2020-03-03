@@ -28,7 +28,7 @@ namespace BankSystem
             balance += amount;
             if (balance > 50000)
             {
-                ProtectionLimitExceeded?.Invoke(this, new BankAccountEventArgs(amount));
+                ProtectionLimitExceeded?.Invoke(this, new BankAccountEventArgs(balance));
             }
         }
 
@@ -37,7 +37,7 @@ namespace BankSystem
             balance -= amount;
             if (balance < 0)
             {
-                Overdrawn?.Invoke(this, new BankAccountEventArgs(amount));
+                Overdrawn?.Invoke(this, new BankAccountEventArgs(balance));
             }
         }
 

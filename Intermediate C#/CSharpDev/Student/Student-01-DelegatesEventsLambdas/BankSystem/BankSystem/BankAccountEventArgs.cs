@@ -4,11 +4,11 @@ namespace BankSystem
 {
     public class BankAccountEventArgs
     {
-        public double TransactionAmount { get; }
+        public double AccountBalance { get; }
         public DateTime Timestamp { get; } 
-        public BankAccountEventArgs(double amount)
+        public BankAccountEventArgs(double balance)
         {
-            TransactionAmount = amount;
+            AccountBalance = balance;
             Timestamp = DateTime.Now;
         }
     }
