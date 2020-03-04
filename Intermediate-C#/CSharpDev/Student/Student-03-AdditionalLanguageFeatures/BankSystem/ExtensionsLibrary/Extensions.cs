@@ -5,12 +5,9 @@ namespace ExtensionsLibrary
     public static class Extensions
     {
         //double
-        public static bool IsWithinRange(this double dub, double minNumber, double maxNumber)
-        {
-            return dub >= minNumber && dub < maxNumber ? true : false;
-        }
+        public static bool IsWithinRange(this double dub, double minNumber, double maxNumber) => dub >= minNumber && dub < maxNumber ? true : false;
         //string
-        public static bool IsStrongPassword(this string pwd)
+        public static string IsStrongPassword(this string pwd)
         {
             bool result = false;
             bool puncCheck = false;
@@ -19,7 +16,7 @@ namespace ExtensionsLibrary
             bool upCheck = false;
             if (pwd.Length < 8)
             {
-                return result;
+                return $"Password {pwd} is not strong";
             }
             foreach (var substring in pwd)
             {
@@ -29,7 +26,7 @@ namespace ExtensionsLibrary
                 upCheck = char.IsUpper(substring) ? true : upCheck;
             }
             result = puncCheck && numCheck && lowCheck && upCheck;
-            return result;
+            return result ? $"Password {pwd} is strong" : $"Password {pwd} is not strong";
         }
     }
 }

@@ -61,13 +61,13 @@ namespace BankSystem
             Console.WriteLine(dub.IsWithinRange(2,2).ToString());
 
             string pwd1 = "hihihihihi";
-            Console.WriteLine(pwd1.IsStrongPassword().ToString());
+            Console.WriteLine(pwd1.IsStrongPassword());
             string pwd2 = "hiHihihihi";
-            Console.WriteLine(pwd2.IsStrongPassword().ToString());
+            Console.WriteLine(pwd2.IsStrongPassword());
             string pwd3 = "hiHihih1hi";
-            Console.WriteLine(pwd3.IsStrongPassword().ToString());
+            Console.WriteLine(pwd3.IsStrongPassword());
             string pwd4 = "hiHihih1h!";
-            Console.WriteLine(pwd4.IsStrongPassword().ToString());
+            Console.WriteLine(pwd4.IsStrongPassword());
         }
     }
 }
