@@ -7,7 +7,7 @@ namespace CyclicListApp
     {
         private readonly int _maxLength;
         private int _currentIndexPosition;
-        private List<T> _elements = new List<T>();
+        private readonly List<T> _elements = new List<T>();
         public CyclicList(int maxLength)
         {
             _maxLength = maxLength;
@@ -41,6 +41,7 @@ namespace CyclicListApp
                 return default;
             }
         }
+
         public void GetAllElements()
         {
             var tempIndexPosition = _currentIndexPosition;

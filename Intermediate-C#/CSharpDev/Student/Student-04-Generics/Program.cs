@@ -1,27 +1,43 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CyclicListApp
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Console.WriteLine("Hello World!");
-            var cyclicList = new CyclicList<object>(7);
-            cyclicList.Add(1);
-            cyclicList.Add(2);
-            cyclicList.Add(3);
-            cyclicList.Add(4);
-            cyclicList.Add(5);
-            cyclicList.Add(6);
-            cyclicList.Add(7);
-            cyclicList.Add(8);
-            cyclicList.Add(9);
-            cyclicList.Add(10);
-            //Console.WriteLine(test.GetElement(0));
-            //Console.WriteLine(test.GetElement(5));
-            //Console.WriteLine(test.GetElement(6));
+            var cyclicList = new CyclicList<object>(7)
+            {
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+            };
             cyclicList.GetAllElements();
+            Console.WriteLine("");
+            var stringList = new CyclicList<object>(3)
+            {
+                "a",
+                "b",
+                "c",
+                "d",
+                "e",
+                "f",
+                "g",
+                "h",
+                "i",
+                "j"
+            };
+            stringList.GetAllElements();
         }
     }
 }
