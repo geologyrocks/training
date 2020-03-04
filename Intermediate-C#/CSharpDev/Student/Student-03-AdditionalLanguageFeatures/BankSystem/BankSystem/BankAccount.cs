@@ -19,10 +19,12 @@ namespace BankSystem
     }
 
     public class BankAccount
-    {
+    {   
+        // Property
+        public string AccountHolder { get; internal set; }
         // Fields.
-        private string accountHolder;
-        private double balance = 0;
+        private string _accountHolder;
+        private double _balance = 0;
         private List<double> transactions = new List<double>();
 
         // Events.
@@ -30,16 +32,17 @@ namespace BankSystem
         public event EventHandler<BankAccountEventArgs> Overdrawn;
 
         // Constructor.
-        public BankAccount(string accountHolder) => this.accountHolder = accountHolder;
+        public BankAccount(){}
+
 
         // Constructor to initialize a BankAccount from a stream.
         public BankAccount(StreamReader reader)
         {
             // Read account holder from file, as a single line.
-            accountHolder = reader.ReadLine();
+            _accountHolder = reader.ReadLine();
 
             // Read balance from file, as a single line, and convert to a double.
-            balance = double.Parse(reader.ReadLine());
+            _balance = double.Parse(reader.ReadLine());
 
             // Read transactions from file, and split at spaces.
             string allTxStr = reader.ReadLine();
@@ -60,10 +63,10 @@ namespace BankSystem
         public void WriteToStream(StreamWriter writer)
         {
             // Write account holder to file, as a single line.
-            writer.WriteLine("{0}", accountHolder);
+            writer.WriteLine("{0}", _accountHolder);
 
             // Write balance to file, as a single line.
-            writer.WriteLine("{0}", balance);
+            writer.WriteLine("{0}", _balance);
 
             // Write transactions to file (space-separated), as a single line.
             foreach (double transaction in transactions)
@@ -80,15 +83,15 @@ namespace BankSystem
             // If attempt to deposit more than 100000, disallow this deposit!
             if (amount > 100000)
             {
-                throw new BankException("Cannot deposit more than 100000.", accountHolder, amount);
+                throw new BankException("Cannot deposit more than 100000.", _accountHolder, amount);
             }
 
             // Deposit money, and store transaction amount.
-            balance += amount;
+            _balance += amount;
             transactions.Add(amount);
 
             // If balance has exceeded the government's protection limit, raise a ProtectionLimitExceeded event.
-            if (balance >= 50000 && ProtectionLimitExceeded != null)
+            if (_balance >= 50000 && ProtectionLimitExceeded != null)
             {
                 ProtectionLimitExceeded(this, new BankAccountEventArgs(amount));
             }
@@ -97,25 +100,30 @@ namespace BankSystem
         public void Withdraw(double amount)
         {
             // If account is already overdrawn, disallow this withdrawal!
-            if (balance < 0)
+            if (_balance < 0)
             {
-                throw new BankException("Cannot withdraw from an overdrawn account.", accountHolder, amount);
+                throw new BankException("Cannot withdraw from an overdrawn account.", _accountHolder, amount);
             }
 
             // Withdraw money, and store transaction amount as a negative amount (to denote a withdrawal). 
-            balance -= amount;
+            _balance -= amount;
             transactions.Add(-amount);
 
             // If account is now negative, raise an Overdrawn event.
-            if (balance < 0 && Overdrawn != null)
+            if (_balance < 0 && Overdrawn != null)
             {
                 Overdrawn(this, new BankAccountEventArgs(amount));
             }
         }
 
-        // Return a read-only wrapper for the transaction list. Prevents client app from meddling...
-        public ReadOnlyCollection<double> Transactions => transactions.AsReadOnly(); 
+        public double GetBalance()
+        {
+            return _balance;
+        }
 
-        public override string ToString() => $"Account {accountHolder}, balance {balance:C}";
+        // Return a read-only wrapper for the transaction list. Prevents client app from meddling...
+        public ReadOnlyCollection<double> Transactions => transactions.AsReadOnly();
+
+        public override string ToString() => $"Account {AccountHolder}, balance {_balance:C}";
     }
 }
