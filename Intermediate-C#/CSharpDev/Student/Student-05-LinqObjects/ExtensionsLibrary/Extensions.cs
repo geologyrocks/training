@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ExtensionsLibrary
 {
@@ -28,5 +29,6 @@ namespace ExtensionsLibrary
             result = puncCheck && numCheck && lowCheck && upCheck;
             return result ? $"Password {pwd} is strong" : $"Password {pwd} is not strong";
         }
+
     }
 }
