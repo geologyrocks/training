@@ -10,7 +10,6 @@ namespace ExtensionsLibrary
         //string
         public static string IsStrongPassword(this string pwd)
         {
-            bool result = false;
             bool puncCheck = false;
             bool numCheck = false;
             bool lowCheck = false;
@@ -26,9 +25,7 @@ namespace ExtensionsLibrary
                 lowCheck = char.IsLower(substring) ? true : lowCheck;
                 upCheck = char.IsUpper(substring) ? true : upCheck;
             }
-            result = puncCheck && numCheck && lowCheck && upCheck;
-            return result ? $"Password {pwd} is strong" : $"Password {pwd} is not strong";
+            return (puncCheck && numCheck && lowCheck && upCheck) ? $"Password {pwd} is strong" : $"Password {pwd} is not strong";
         }
-
     }
 }

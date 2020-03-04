@@ -22,10 +22,9 @@ namespace BankSystem
     {   
         // Property
         public string AccountHolder { get; internal set; }
-        public double Balance { get; internal set; }
         // Fields.
         private string _accountHolder;
-        private double _balance = 0;
+        public double Balance = 0;
         private List<double> transactions = new List<double>();
 
         // Events.
@@ -43,7 +42,7 @@ namespace BankSystem
             _accountHolder = reader.ReadLine();
 
             // Read balance from file, as a single line, and convert to a double.
-            _balance = double.Parse(reader.ReadLine());
+            Balance = double.Parse(reader.ReadLine());
 
             // Read transactions from file, and split at spaces.
             string allTxStr = reader.ReadLine();
@@ -67,7 +66,7 @@ namespace BankSystem
             writer.WriteLine("{0}", _accountHolder);
 
             // Write balance to file, as a single line.
-            writer.WriteLine("{0}", _balance);
+            writer.WriteLine("{0}", Balance);
 
             // Write transactions to file (space-separated), as a single line.
             foreach (double transaction in transactions)
@@ -88,11 +87,11 @@ namespace BankSystem
             }
 
             // Deposit money, and store transaction amount.
-            _balance += amount;
+            Balance += amount;
             transactions.Add(amount);
 
             // If balance has exceeded the government's protection limit, raise a ProtectionLimitExceeded event.
-            if (_balance >= 50000 && ProtectionLimitExceeded != null)
+            if (Balance >= 50000 && ProtectionLimitExceeded != null)
             {
                 ProtectionLimitExceeded(this, new BankAccountEventArgs(amount));
             }
@@ -101,25 +100,20 @@ namespace BankSystem
         public void Withdraw(double amount)
         {
             // If account is already overdrawn, disallow this withdrawal!
-            if (_balance < 0)
+            if (Balance < 0)
             {
                 throw new BankException("Cannot withdraw from an overdrawn account.", _accountHolder, amount);
             }
 
             // Withdraw money, and store transaction amount as a negative amount (to denote a withdrawal). 
-            _balance -= amount;
+            Balance -= amount;
             transactions.Add(-amount);
 
             // If account is now negative, raise an Overdrawn event.
-            if (_balance < 0 && Overdrawn != null)
+            if (Balance < 0 && Overdrawn != null)
             {
                 Overdrawn(this, new BankAccountEventArgs(amount));
             }
-        }
-
-        public double GetBalance()
-        {
-            return _balance;
         }
 
         // Return a read-only wrapper for the transaction list. Prevents client app from meddling...
