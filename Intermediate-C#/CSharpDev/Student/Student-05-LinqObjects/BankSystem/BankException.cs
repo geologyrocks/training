@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UsingLinqCollections
+namespace BankSystem
 {
     class BankException : ApplicationException
     {
