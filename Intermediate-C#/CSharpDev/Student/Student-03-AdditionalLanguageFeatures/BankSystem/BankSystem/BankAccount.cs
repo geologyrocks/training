@@ -22,6 +22,7 @@ namespace BankSystem
     {   
         // Property
         public string AccountHolder { get; internal set; }
+        public double Balance { get; internal set; }
         // Fields.
         private string _accountHolder;
         private double _balance = 0;
@@ -124,6 +125,6 @@ namespace BankSystem
         // Return a read-only wrapper for the transaction list. Prevents client app from meddling...
         public ReadOnlyCollection<double> Transactions => transactions.AsReadOnly();
 
-        public override string ToString() => $"Account {AccountHolder}, balance {_balance:C}";
+        public override string ToString() => $"Account {AccountHolder}, balance {Balance:C}";
     }
 }

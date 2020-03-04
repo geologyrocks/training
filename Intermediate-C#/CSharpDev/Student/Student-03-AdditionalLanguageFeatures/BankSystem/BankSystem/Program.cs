@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExtensionsLibrary;
 
 namespace BankSystem
 {
@@ -13,8 +14,8 @@ namespace BankSystem
             // Create a Bank and add some BankAccounts.
             Bank bank = new Bank()
             {
-                [123] = new BankAccount { AccountHolder = "John" },
-                [456] = new BankAccount { AccountHolder = "Mary" },
+                [123] = new BankAccount { AccountHolder = "John", Balance = 20000 },
+                [456] = new BankAccount { AccountHolder = "Mary", Balance = 10},
                 [789] = new BankAccount { AccountHolder = "Sara" }
             };
             // Create a list of BankAccounts.
@@ -55,6 +56,18 @@ namespace BankSystem
             Console.WriteLine($"\nNumber of bank accounts: {obj.numAccounts}");
             Console.WriteLine($"\nBalance of last account: {obj.lastAccountBalance}");
             Console.WriteLine($"\nCurrent time: {obj.dateNow}");
+
+            double dub = 1.0;
+            Console.WriteLine(dub.IsWithinRange(2,2).ToString());
+
+            string pwd1 = "hihihihihi";
+            Console.WriteLine(pwd1.IsStrongPassword().ToString());
+            string pwd2 = "hiHihihihi";
+            Console.WriteLine(pwd2.IsStrongPassword().ToString());
+            string pwd3 = "hiHihih1hi";
+            Console.WriteLine(pwd3.IsStrongPassword().ToString());
+            string pwd4 = "hiHihih1h!";
+            Console.WriteLine(pwd4.IsStrongPassword().ToString());
         }
     }
 }

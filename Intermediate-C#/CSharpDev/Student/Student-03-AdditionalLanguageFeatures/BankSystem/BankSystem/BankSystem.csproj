@@ -51,5 +51,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExtensionsLibrary\ExtensionsLibrary.csproj">
+      <Project>{e9addfd1-3620-4acd-9404-631caf78db0c}</Project>
+      <Name>ExtensionsLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
