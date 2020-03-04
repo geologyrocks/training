@@ -10,8 +10,8 @@ namespace BankSystem
 {
     public class BankAccountEventArgs : EventArgs
     {
-        private double transactionAmount;
-        private DateTime timestamp = DateTime.Now;
+        private readonly double transactionAmount;
+        private readonly DateTime timestamp = DateTime.Now;
 
         public BankAccountEventArgs(double transactionAmount) => this.transactionAmount = transactionAmount;
 
@@ -23,9 +23,9 @@ namespace BankSystem
         // Property
         public string AccountHolder { get; internal set; }
         // Fields.
-        private string _accountHolder;
+        private readonly string _accountHolder;
         public double Balance = 0;
-        private List<double> transactions = new List<double>();
+        private readonly List<double> transactions = new List<double>();
 
         // Events.
         public event EventHandler<BankAccountEventArgs> ProtectionLimitExceeded;
