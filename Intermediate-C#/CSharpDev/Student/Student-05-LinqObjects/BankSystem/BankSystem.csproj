@@ -56,6 +56,10 @@
       <Project>{e9addfd1-3620-4acd-9404-631caf78db0c}</Project>
       <Name>ExtensionsLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UsingLinq\UsingLinq.csproj">
+      <Project>{4252842b-d6c1-48db-89b6-3575c44196ba}</Project>
+      <Name>UsingLinq</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

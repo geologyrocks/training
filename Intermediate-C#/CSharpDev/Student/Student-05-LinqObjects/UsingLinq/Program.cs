@@ -30,6 +30,9 @@ namespace UsingLinqCollections
                                select i * i;
             Output(squaresQuery);
 
+            var sqQuery = ints.Select(i => i * i);
+            Output(sqQuery);
+
             var oddQuery = from i in ints
                            orderby i
                            where i % 2 != 0
