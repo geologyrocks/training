@@ -68,19 +68,27 @@ namespace UnitTestProject1
         }
 
         [TestMethod]
-        [Ignore]
         public void Account_DepositTooMuchFunds_Fails()
         {
             float amount = 30000;
-            account.Deposit(amount);
+            Account a = new Account(100);
+            Assert.ThrowsException<ArgumentException>(() =>
+            {
+                a.Deposit(amount);
+            });
         }
 
         [TestMethod]
-        public void Account_DepositTooLittle_Fails()
+        public void Account_Deposit0_Fails()
         {
-            float amount = 1;
-            account.Deposit(amount);
-            Assert.Inconclusive("TODO: Decide if OK");
+
+            float amount = 0;
+            Account a = new Account(100);
+
+            Assert.ThrowsException<ArgumentException>(() =>
+            {
+                a.Deposit(amount);
+            });
         }
 
         [TestMethod]
