@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CyclicListApp
 {
-    class CyclicList<T> : List<T>
+    class CyclicList<T> : IEnumerable<T>
     {
         private readonly int _maxLength;
         private int _currentIndexPosition;
@@ -16,7 +16,7 @@ namespace CyclicListApp
                 _elements.Add(default(T));
             }
         }
-        public new void Add(T entry)
+        public void Add(T entry)
         {
             _currentIndexPosition = OverflowCheck(_currentIndexPosition);
             _elements[_currentIndexPosition] = entry;
@@ -51,6 +51,16 @@ namespace CyclicListApp
                 Console.WriteLine(_elements[tempIndexPosition]);
                 tempIndexPosition++;
             }
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
         }
     }
 }

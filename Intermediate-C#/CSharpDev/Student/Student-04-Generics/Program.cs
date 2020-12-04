@@ -38,6 +38,21 @@ namespace CyclicListApp
                 "j"
             };
             stringList.GetAllElements();
+            Console.WriteLine("");
+            var mixList = new CyclicList<object>(5)
+            {
+                "a",
+                "b",
+                1,
+                "d",
+                4,
+                new DateTime(),
+                "h",
+                ("this",4),
+                new List<int> {2,3,5,6},
+                "j"
+            };
+            mixList.GetAllElements(); Console.WriteLine("");
         }
     }
 }
