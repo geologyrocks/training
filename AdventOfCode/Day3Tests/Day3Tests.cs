@@ -8,20 +8,19 @@ namespace Day3Tests
     public class Day3Tests
     {
         [Fact]
-        public void GetPassports_ReturnsTotalPassports()
+        public void GetPassports_ReturnsPassportsAsAList()
         {
             // Arrange
             var text = File.ReadAllText(@"..\..\..\..\Day3\RawInput.txt");
-
 
             // Act
             var result = GetPassports(text);
 
             // Assert
-            result.Should().Be(286);
+            result.Should().BeOfType(typeof(List<string>));
         }
 
-        private int GetPassports(string text)
+        private List<string> GetPassports(string text)
         {
             var textSplit = new List<string> (text.Split("\r\n\r\n"));
             foreach (var passport in textSplit)
@@ -29,7 +28,7 @@ namespace Day3Tests
                 passport.Split(':');
             }
 
-            return textSplit.Count;
+            return textSplit;
         }
     }
 }
